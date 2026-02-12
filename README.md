@@ -34,7 +34,7 @@ A **Bitwarden-compatible** server that runs on **Cloudflare Workers**.
 - ⬜ Linux desktop client (not tested)
 
 ---
-
+ 
 # Quick start
 
 ### One-click deploy
