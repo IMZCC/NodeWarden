@@ -1,69 +1,48 @@
 # NodeWarden
-中文文档：[`README_ZH.md`](./README_ZH.md)
+English：[`README_EN.md`](./README_EN.md)
 
-A **Bitwarden-compatible** server that runs on **Cloudflare Workers**.
+运行在 **Cloudflare Workers** 上的 **Bitwarden 第三方服务端**。
 
-- Simple deploy (no VPS)
-- Focused feature set
-- Low maintenance
-
-
-> Disclaimer
-> - This project is **not affiliated** with Bitwarden.
-> - Use at your own risk. Keep regular backups of your vault.
+> **免责声明**  
+> 本项目仅供学习交流使用。我们不对任何数据丢失负责，强烈建议定期备份您的密码库。  
+> 本项目与 Bitwarden 官方无关，请勿向 Bitwarden 官方反馈问题。
 
 ---
 
-## Features
+## 特性
+- ✅ **完全免费，不需要在服务器上部署，再次感谢大善人！**
+- ✅ 数据存储基于 Cloudflare D1（SQLite）
+- ✅ 完整的密码、笔记、卡片、身份信息管理
+- ✅ 文件夹和收藏功能
+- ✅ 文件附件支持（基于 R2 存储）
+- ✅ 导入/导出功能
+- ✅ 网站图标获取
+- ✅ 端到端加密（服务器无法查看明文）
+- ✅ 无感更新，零停机
 
-- ✅ **Free to use. No server to manage.**
-- ✅ Full support for logins, notes, cards, and identities
-- ✅ Folders and favorites
-- ✅ Attachments (Cloudflare R2)
-- ✅ Import / export
-- ✅ Website icons
-- ✅ End-to-end encryption (the server can’t see plaintext)
-- ✅ Compatible with common Bitwarden official clients
+## 测试情况：
+- ✅ Windows 客户端（v2026.1.0）
+- ✅ Android App（v2026.1.0）
+- ✅ 浏览器扩展（v2026.1.0）
+- ⬜ macOS 客户端（未测试）
+- ⬜ Linux 客户端（未测试）
+---
 
-## Tested clients / platforms
+# 快速开始
 
-- ✅ Windows desktop client (v2026.1.0)
-- ✅ Android app (v2026.1.0)
-- ✅ Browser extension (v2026.1.0)
-- ⬜ macOS desktop client (not tested)
-- ⬜ Linux desktop client (not tested)
+### 一键部署
+
+**部署步骤：**
+
+1. 先在右上角fork此项目（若后续不需要更新，可不fork）
+2. [![Deploy to Cloudflare Workers](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/shuaiplus/nodewarden)
+3. 打开部署后生成的链接，并根据网页提示完成后续操作。
 
 ---
 
-# Quick start
+## 本地开发
 
-### One-click deploy
-
-[![Deploy to Cloudflare Workers](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/shuaiplus/nodewarden)
-
-**Deploy steps:**
-
-1. Sign in with GitHub and authorize
-2. Sign in to Cloudflare
-3. **Important**: set `JWT_SECRET` to a strong random string (recommended: `openssl rand -hex 32`)
-4. D1 database and R2 bucket will be created automatically
-5. Click **Deploy** and wait for it to finish
-6. After deploy, open the Cloudflare-provided Workers URL (your service URL), and register on the web page
-
-> ⚠️ **Reminder**: always use a strong random `JWT_SECRET`. Weak secrets may put your account at risk.
-
-### Configure your client
-
-In any Bitwarden client:
-
-1. Open **Settings**
-2. Choose **Self-hosted environment**
-3. Set **Server URL** to your Worker URL (for example: `https://your-project.your-subdomain.workers.dev`)
-4. Save, then go back to the login screen
-
-## 🧑‍💻 Local development
-
-This repo is a Cloudflare Workers TypeScript project (Wrangler).
+这是一个 Cloudflare Workers 的 TypeScript 项目（Wrangler）。
 
 ```bash
 npm install
@@ -72,37 +51,27 @@ npm run dev
 
 ---
 
-## Tech stack
+## 常见问题
 
-- **Runtime**: Cloudflare Workers
-- **Data storage**: Cloudflare D1 (SQLite)
-- **File storage**: Cloudflare R2
-- **Language**: TypeScript
-- **Crypto**: Client-side AES-256-CBC, JWT uses HS256
+**Q: 如何备份数据？**  
+A: 在客户端中选择「导出密码库」，保存 JSON 文件。
 
----
+**Q: 忘记主密码怎么办？**  
+A: 无法恢复，这是端到端加密的特性。建议妥善保管主密码。
 
-## FAQ
-
-**Q: How do I back up my data?**  
-A: Use **Export vault** in your client and save the JSON file.
-
-**Q: What if I forget the master password?**  
-A: It can’t be recovered (end-to-end encryption). Keep it safe.
-
-**Q: Can multiple people use it?**  
-A: Not recommended. This project is designed for single-user usage.
+**Q: 可以多人使用吗？**  
+A: 不建议。本项目为单用户设计，多人使用请选择 Vaultwarden。
 
 ---
 
-## License
+## 开源协议
 
 LGPL-3.0 License
 
 ---
 
-## Credits
+## 致谢
 
-- [Bitwarden](https://bitwarden.com/) - original design and clients
-- [Vaultwarden](https://github.com/dani-garcia/vaultwarden) - server implementation reference
-- [Cloudflare Workers](https://workers.cloudflare.com/) - serverless platform
+- [Bitwarden](https://bitwarden.com/) - 原始设计和客户端
+- [Vaultwarden](https://github.com/dani-garcia/vaultwarden) - 服务器实现参考
+- [Cloudflare Workers](https://workers.cloudflare.com/) - 无服务器平台
